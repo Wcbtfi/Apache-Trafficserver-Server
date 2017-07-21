@@ -19,7 +19,7 @@
 
 .. _admin-installing:
 
-Installing Traffic Server
+安装 Traffic Server
 *************************
 
 .. toctree::

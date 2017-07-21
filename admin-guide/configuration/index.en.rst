@@ -19,7 +19,7 @@
 
 .. _admin-configuration:
 
-Proxy Cache Configuration
+代理缓存配置
 *************************
 
 .. toctree::

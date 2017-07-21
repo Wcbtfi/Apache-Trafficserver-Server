@@ -19,13 +19,13 @@
 
 .. _preface:
 
-Preface
+前言
 *******
 
 .. toctree::
   :maxdepth: 2
 
-What is Apache Traffic Server?
+什么是 Apache Traffic Server?
 ==============================
 
 |ATS| is a high-performance web proxy cache that improves network efficiency

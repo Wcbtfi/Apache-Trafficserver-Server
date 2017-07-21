@@ -21,9 +21,7 @@
 cache.config
 ============
 
-The :file:`cache.config` file (by default, located in 
-``/usr/local/etc/trafficserver/``) defines how Traffic Server caches 
-web objects. You can add caching rules to specify the following: 
+:file:`cache.config` 文件 ( 默认位于 ``/usr/local/etc/trafficserver/`` ) 定义 Traffic Server 如何缓存 web 对象. 你可以添加缓存规则去指定以下内容: 
 
     - Not to cache objects from specific IP addresses 
     - How long to pin particular objects in the cache

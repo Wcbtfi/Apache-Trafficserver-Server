@@ -19,7 +19,7 @@
 
 .. _admin-introduction:
 
-Introduction
+介绍
 ************
 
 Global data networking has become part of everyday life: Internet users
@@ -43,15 +43,15 @@ Traffic Server Deployment Options
 
 To best suit your needs, Traffic Server can be deployed in several ways:
 
--  As a web proxy cache
--  As a reverse proxy
--  In a cache hierarchy
+-  用作WEB代理缓存
+-  用作反向代理
+-  用在缓存层次结构
 
 The following sections provide a summary of these Traffic Server
 deployment options. Please keep in mind that with every one of these options
 Traffic Server can be run as a *single instance*, or as a *multi-node cluster*.
 
-Traffic Server as a Web Proxy Cache
+Traffic Server 用作WEB代理缓存
 -----------------------------------
 
 As a web proxy cache, Traffic Server receives user requests for web
@@ -72,7 +72,7 @@ which the client software needs no special configuration or even knowledge of
 the proxy's existence. This setup is described in the :ref:`transparent-proxy`
 section.
 
-Traffic Server as a Reverse Proxy
+Traffic Server 用作反向代理
 ---------------------------------
 
 As a reverse proxy, Traffic Server is configured to be the origin server
@@ -82,7 +82,7 @@ origin server). The reverse proxy feature is also called server
 acceleration. Reverse proxy is described in more detail in
 :ref:`reverse-proxy-and-http-redirects`.
 
-Traffic Server in a Cache Hierarchy
+Traffic Server 用在缓存层次结构
 -----------------------------------
 
 Traffic Server can participate in flexible cache hierarchies, in which
@@ -95,7 +95,7 @@ similar caching products.
 Traffic Server supports ICP (Internet Cache Protocol) peering.
 Hierarchical caching is described in more detail in :ref:`admin-hierarchical-caching`.
 
-Deployment Limitations
+部署限制
 ----------------------
 
 There are a number of deployment options that Traffic Server does not support
@@ -134,7 +134,7 @@ You can partition the cache to reserve a certain amount of disk space
 for storing data for specific protocols and origin servers. For more
 information about the cache, see :ref:`http-proxy-caching`.
 
-The RAM Cache
+RAM 缓存
 -------------
 
 Traffic Server maintains a small RAM cache that contains extremely
@@ -143,7 +143,7 @@ as possible and reduces load on disks, especially during temporary
 traffic peaks. You can configure the RAM cache size to suit your needs.
 For detailed information, refer to :ref:`changing-the-size-of-the-ram-cache`.
 
-The Host Database
+Host 数据库
 -----------------
 
 The Traffic Server host database stores the domain name server (DNS)
@@ -160,7 +160,7 @@ host database tracks:
 -  Host reliability and availability information (so users will not wait
    for servers that are not running).
 
-The DNS Resolver
+DNS 解析
 ----------------
 
 Traffic Server includes a fast, asynchronous DNS resolver to streamline
@@ -213,7 +213,7 @@ The figure below illustrates the three Traffic Server processes.
 
    Illustration of the three Traffic Server Processes
 
-Administration Tools
+管理员工具
 --------------------
 
 Traffic Server offers the following administration options:
@@ -260,7 +260,7 @@ monitoring:
 |TS| event and error logging, monitoring, and analysis is covered in greater
 detail in :ref:`admin-monitoring`.
 
-Traffic Server Security Options
+Traffic Server 安全选项
 ===============================
 
 Traffic Server provides numerous options that enable you to establish

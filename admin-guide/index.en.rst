@@ -22,7 +22,7 @@
 Administrator's Guide
 **********************
 
-Table of Contents:
+目录:
 
 .. toctree::
    :maxdepth: 2
