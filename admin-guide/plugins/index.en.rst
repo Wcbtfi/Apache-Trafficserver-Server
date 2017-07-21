@@ -1,0 +1,199 @@
+.. Licensed to the Apache Software Foundation (ASF) under one
+   or more contributor license agreements.  See the NOTICE file
+   distributed with this work for additional information
+   regarding copyright ownership.  The ASF licenses this file
+   to you under the Apache License, Version 2.0 (the
+   "License"); you may not use this file except in compliance
+   with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+
+.. include:: ../../common.defs
+
+.. _admin-plugins:
+
+Plugins
+*******
+
+.. toctree::
+   :maxdepth: 2
+
+Overview
+========
+
+One of the key features of |ATS| is its modularity. Features that aren't needed
+in the core simply aren't there. This helps to provide an additional guarantee
+that our core can remain fast by concentrating on the things that we always
+provide: caching and proxying.
+
+All other functionality can be moved into plugins and by offering a consistent
+C API, everyone can implement their own functionality, without having to touch
+the core.
+
+Stable plugins
+==============
+
+Plugins that are considered stable are installed by default in |TS| releases.
+
+.. toctree::
+   :hidden:
+
+   Cache URL <cacheurl.en>
+   Configuration Remap <conf_remap.en>
+   GZip <gzip.en>
+   Header Rewrite <header_rewrite.en>
+   Health Checks <healthchecks.en>
+   Regex Remap <regex_remap.en>
+   Stats over HTTP <stats_over_http.en>
+   TCPInfo <tcpinfo.en>
+
+:doc:`Cache URL <cacheurl.en>`
+    Modify the :term:`cache key` used for requests by applying a regular
+    expression to the URL.
+
+:doc:`Configuration Remap <conf_remap.en>`
+    Override configuration directives on a per-rule basis.
+
+:doc:`GZip <gzip.en>`
+    Compress or deflate cache responses.
+
+:doc:`Header Rewrite <header_rewrite.en>`
+    Modify requests and responses based on incoming and outgoing headers and
+    other transaction attributes.
+
+:doc:`Health Checks <healthchecks.en>`
+    Define service health check links.
+
+:doc:`Regex Remap <regex_remap.en>`
+    Configure remapping rules using regular expressions.
+
+:doc:`Stats over HTTP <stats_over_http.en>`
+    Provide an HTTP interface to all |TS| statistics.
+
+:doc:`TCPInfo <tcpinfo.en>`
+    Log TCP metrics at various points of the HTTP processing pipeline.
+
+Experimental plugins
+====================
+
+Plugins that are considered experimental are located in the
+`plugins/experimental <https://git-wip-us.apache.org/repos/asf?p=trafficserver.git;a=tree;f=plugins/experimental;hb=HEAD>`_
+directory of the |TS| source tree. Experimental plugins can be compiled by passing the
+`--enable-experimental-plugins` option to `configure`::
+
+    $ autoconf -i
+    $ ./configure --enable-experimental-plugins
+    $ make
+
+.. toctree::
+   :hidden:
+
+   AuthProxy <authproxy.en>
+   AWS S3 Authentication <s3_auth.en>
+   Background Fetch <background_fetch.en>
+   Balancer <balancer.en>
+   Buffer Upload <buffer_upload.en>
+   Cache Key Manipulation <cachekey.en>
+   Cache Promote <cache_promote.en>
+   Combo Handler <combo_handler.en>
+   Epic <epic.en>
+   Escalate <escalate.en>
+   ESI <esi.en>
+   Generator <generator.en>
+   GeoIP ACL <geoip_acl.en>
+   HIPES <hipes.en>
+   Memcache <memcache.en>
+   Metalink <metalink.en>
+   MP4 <mp4.en>
+   MySQL Remap <mysql_remap.en>
+   Signed URLs <url_sig.en>
+   SSL Headers <sslheaders.en>
+   Stale While Revalidate <stale_while_revalidate.en>
+   TS Lua <ts_lua.en>
+   WebP Transform <webp_transform.en>
+   XDebug <xdebug.en>
+   Collapsed-Forwarding <collapsed_forwarding.en>
+
+:doc:`AuthProxy <authproxy.en>`
+   Delegates the authorization decision of a request to an external HTTP service.
+
+:doc:`AWS S3 Authentication <s3_auth.en>`
+   Support for Amazon S3 authentication features.
+
+:doc:`Background Fetch <background_fetch.en>`
+   Proactively fetch content from Origin in a way that it will fill the object into cache.
+
+:doc:`Balancer <balancer.en>`
+   Balances requests across multiple origin servers.
+
+:doc:`Buffer Upload <buffer_upload.en>`
+   Buffers POST data before connecting to the Origin server.
+
+:doc:`Cache Key Manipulation <cachekey.en>`
+   Allows some common cache key manipulations based on various HTTP request elements.
+
+:doc:`Cache Promote <cache_promote.en>`
+   Provides additional control over when an object should be allowed into the cache.
+
+:doc:`Combo Handler <combo_handler.en>`
+   Provides an intelligent way to combine multiple URLs into a single URL, and have Apache Traffic Server combine the components into one response.
+
+:doc:`Epic <epic.en>`
+   Emits Traffic Server metrics in a format that is consumed by the Epic Network Monitoring System.
+
+:doc:`Escalate <escalate.en>`
+   Escalate: when the origin returns specific status codes, retry the request at a secondary origin (failover/fail-action)
+
+:doc:`ESI <esi.en>`
+   Implements the Edge Side Includes (ESI) specification.
+
+:doc:`Generator <generator.en>`
+   Generate arbitrary response data.
+
+:doc:`GeoIP ACL <geoip_acl.en>`
+   Deny or allow requests based on the source IP geo-location.
+
+:doc:`HIPES <hipes.en>`
+   Adds support for HTTP Pipes.
+
+:doc:`Memcache <memcache.en>`
+   Implements the memcache protocol for cache contents.
+
+:doc:`Metalink <metalink.en>`
+   Implements the Metalink download description format in order to try not to download the same file twice.
+
+:doc:`MP4 <mp4.en>`
+   MP4 streaming media.
+
+:doc:`MySQL Remap <mysql_remap.en>`
+   Allows dynamic remaps from a MySQL database.
+
+:doc:`Signed URLs <url_sig.en>`
+   Adds support for verifying URL signatures for incoming requests to either deny or redirect access.
+
+:doc:`SSL Headers <sslheaders.en>`
+   Populate request headers with SSL session information.
+
+:doc:`Stale While Revalidate <stale_while_revalidate.en>`
+   Refresh content asynchronously while serving stale data.
+
+:doc:`TS Lua <ts_lua.en>`
+   Allows plugins to be written in Lua instead of C code.
+
+:doc:`WebP Transform <webp_transform.en>`
+   Converts jpeg and png images to webp format.
+
+:doc:`XDebug <xdebug.en>`
+   Allows HTTP clients to debug the operation of the Traffic Server cache using the X-Debug header.
+
+:doc:`Collapsed-Forwarding <collapsed_forwarding.en>`
+   Allows to Collapse multiple Concurrent requests by downloading once from the Origin and serving
+   all clients in parallel.
+
