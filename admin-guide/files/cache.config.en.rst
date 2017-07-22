@@ -51,20 +51,17 @@ possible primary destinations with allowed values.
 .. _cache-config-format-dest-domain:
 
 ``dest_domain``
-   A requested domain name. Traffic Server matches the domain name of
-   the destination from the URL in the request.
+   请求的域名. Traffic Server 从请求的 URL 中匹配目标的域名.
 
 .. _cache-config-format-dest-host:
 
 ``dest_host``
-   A requested hostname. Traffic Server matches the hostname of the
-   destination from the URL in the request.
+   请求的主机名. Traffic Server 从请求的 URL 中匹配目标的主机名.
 
 .. _cache-config-format-dest-ip:
 
 ``dest_ip``
-   A requested IP address. Traffic Server matches the IP address of the
-   destination in the request.
+   请求的 IP 地址. Traffic Server 匹配请求的目标的 IP 地址.
 
 .. _cache-config-format-url-regex:
 
@@ -77,37 +74,37 @@ following list shows possible secondary specifiers with allowed values.
 .. _cache-config-format-port:
 
 ``port``
-   A requested URL port.
+   请求的 URL 端口.
 
 .. _cache-config-format-scheme:
 
 ``scheme``
-   A request URL protocol: http or https.
+   请求的 URL 协议: http 或 https.
 
 .. _cache-config-format-prefix:
 
 ``prefix``
-   A prefix in the path part of a URL.
+   在 URL 里部分路径的前缀.
 
 .. _cache-config-format-suffix:
 
 ``suffix``
-   A file suffix in the URL.
+   在 URL 里的文件后缀.
 
 .. _cache-config-format-method:
 
 ``method``
-   A request URL method: get, put, post, trace.
+   请求的 URL 方法: get, put, post, trace.
 
 .. _cache-config-format-time:
 
 ``time``
-   A time range, such as 08:00-14:00.
+   时间范围, 如 08:00-14:00.
 
 .. _cache-config-format-src-ip:
 
 ``src_ip``
-   A client IP address.
+   客户端 IP 地址.
 
 .. _cache-config-format-internal:
 
@@ -179,23 +176,20 @@ The following list shows possible actions and their allowed values.
    time object(s) are to be kept in the cache, regardless of Cache-Control response 
    headers. Use the same time formats as pin-in-cache and revalidate.
 
-Examples
+例子
 ========
 
-The following example configures Traffic Server to revalidate ``gif``
-and ``jpeg`` objects in the domain ``mydomain.com`` every 6 hours, and
-all other objects in ``mydomain.com`` every hour. The rules are applied
-in the order listed. ::
+下面 Traffic Server 的示例 每隔6个小时重新验证 ``mydomain.com`` 域的 ``gif`` 和 ``jpeg`` 对象, 以及每隔1小时重新验证所有其他对象. 规则按列出的顺序应用. ::
 
    dest_domain=mydomain.com suffix=gif revalidate=6h
    dest_domain=mydomain.com suffix=jpeg revalidate=6h
    dest_domain=mydomain.com revalidate=1h
 
-Force a specific regex to be in cache between 7-11pm of the server's time for 26hours. ::
+强制一个指定的正则, 应用于服务器时间的 7-11pm 之间, 缓存26个小时. ::
 
    url_regex=example.com/articles/popular.* time=19:00-23:00 ttl-in-cache=1d2h
 
-Prevent objects from being evicted from cache: 
+防止对象从缓存中逐出: 
 
    url_regex=example.com/game/.* pin-in-cache=1h
 
