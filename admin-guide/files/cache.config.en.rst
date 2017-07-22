@@ -121,16 +121,11 @@ The following list shows possible actions and their allowed values.
 ``action``
    One of the following values:
 
-   -  ``never-cache`` configures Traffic Server to never cache
-      specified objects.
-   -  ``ignore-no-cache`` configures Traffic Server to ignore all
-      ``Cache-Control: no-cache`` headers.
-   -  ``ignore-client-no-cache`` configures Traffic Server to ignore
-      ``Cache-Control: no-cache`` headers from client requests.
-   -  ``ignore-server-no-cache`` configures Traffic Server to ignore
-      ``Cache-Control: no-cache`` headers from origin server responses.
-   -  ``cluster-cache-local`` configures the cluster cache to allow for
-      this content to be stored locally on every cluster node.
+   -  ``never-cache`` 配置 Traffic Server 从不缓存指定的对象.
+   -  ``ignore-no-cache`` 配置 Traffic Server 忽略所有 ``Cache-Control: no-cache`` 标头.
+   -  ``ignore-client-no-cache`` 配置 Traffic Server 忽略来自客户端请求的 `Cache-Control: no-cache`` 标头.
+   -  ``ignore-server-no-cache`` 配置 Traffic Server 忽略来自源服务器响应的 ``Cache-Control: no-cache`` 标头.
+   -  ``cluster-cache-local`` 配置集群缓存, 以允许在每个集群节点上存储这个内容.
 
 .. _cache-responses-to-cookies:
 
@@ -145,28 +140,25 @@ The following list shows possible actions and their allowed values.
 .. _cache-config-format-pin-in-cache:
 
 ``pin-in-cache``
-   Preserves objects in cache, preventing them from being overwritten.
-   Does not affect objects that are determined not to be cacheable. This
-   setting can have performance issues, and  severely affect the cache. 
-   For instance, if the primary destination matches all objects, once the 
-   cache is full, no new objects could get written as nothing would be 
-   evicted.  Similarly, for each cache-miss, each object would incur extra 
-   checks to determine if the object it would replace could be overwritten. 
+   保留缓存中的对象, 防止它们被逐出. 
+   不会影响那些已经确定不可缓存的对象. 
+   这个设置可能会产生性能问题, 并严重影响缓存.  
+   在实例中, 如果主要目标匹配所有对象, 一旦缓存存满, 因为没有对象被逐出, 因此任何新的对象都不会写入. 
+   同样, 对于每个 cache-miss , 每个对象都会进行额外的检查, 以确保它所替换的对象是否可以被覆盖. 
 
-   The value is the amount of time you want to keep the object(s) in the cache. The
-   following time formats are allowed:
+   这个值是设置对象在缓存中保留的时间. 允许使用下列时间格式:
 
-   -  ``d`` for days; for example: 2d
-   -  ``h`` for hours; for example: 10h
-   -  ``m`` for minutes; for example: 5m
-   -  ``s`` for seconds; for example: 20s
-   -  mixed units; for example: 1h15m20s
+   -  ``d`` 天; 例如: 2d
+   -  ``h`` 小时; 例如: 10h
+   -  ``m`` 分钟; 例如: 5m
+   -  ``s`` 秒; 例如: 20s
+   -  混合单位; 例如: 1h15m20s
 
 .. _cache-config-format-revalidate:
 
 ``revalidate``
    For objects that are in cache, overrides the the amount of time the object(s) 
-   are to be considered fresh. Use the same time formats as ``pin-in-cache``.
+   are to be considered fresh. 使用与 ``pin-in-cache`` 相同的时间格式.
 
 .. _cache-config-format-ttl-in-cache:
 
@@ -189,7 +181,7 @@ The following list shows possible actions and their allowed values.
 
    url_regex=example.com/articles/popular.* time=19:00-23:00 ttl-in-cache=1d2h
 
-防止对象从缓存中逐出: 
+防止对象在缓存中被逐出: 
 
    url_regex=example.com/game/.* pin-in-cache=1h
 
