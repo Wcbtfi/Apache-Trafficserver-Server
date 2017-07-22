@@ -23,30 +23,24 @@ cache.config
 
 :file:`cache.config` 文件 ( 默认位于 ``/usr/local/etc/trafficserver/`` ) 定义 Traffic Server 如何缓存 web 对象. 你可以添加缓存规则去指定以下内容: 
 
-    - Not to cache objects from specific IP addresses 
-    - How long to pin particular objects in the cache
-    - How long to consider cached objects as fresh 
-    - Whether to ignore no-cache directives from the server
+    - 不缓存来自指定 IP 地址的对象
+    - 锁定缓存中特定对象的时间
+    - 将缓存对象视为新鲜的时间
+    - 是否忽略来自服务器的 no-cache 指令
     
-.. important::
+.. 重要::
 
-   After you modify the :file:`cache.config` file, navigate to
-   the Traffic Server bin directory; then run the :option:`traffic_ctl config reload`
-   command to apply changes. When you apply the changes to a node in a
-   cluster, Traffic Server automatically applies the changes to all other
-   nodes in the cluster.
+   在修改 :file:`cache.config` 文件之后, 进入 Traffic Server bin 目录; 然后运行 :option:`traffic_ctl config reload` 命令应用更改. 当你在集群的一个节点应用更改时, Traffic Server 自动地应用更改到集群的所有的其他节点.
 
-Format
+格式
 ======
 
-Each line in the :file:`cache.config` file contains a caching rule. Traffic
-Server recognizes three space-delimited tags::
+   :file:`cache.config` 文件里的每一行包含一个缓存规则. Traffic Server 识别三个空格分隔的标记::
 
    primary_destination=value secondary_specifier=value action=value
 
-You can use more than one secondary specifier in a rule. However, you
-cannot repeat a secondary specifier. The following list shows the
-possible primary destinations with allowed values.
+可以在一个规则里使用多个辅助说明符. 但是, 不能重复一个辅助说明符. 
+以下列表显示了可能具有允许值的主要目标.
 
 .. _cache-config-format-dest-domain:
 
@@ -66,10 +60,9 @@ possible primary destinations with allowed values.
 .. _cache-config-format-url-regex:
 
 ``url_regex``
-   A regular expression (regex) to be found in a URL.
+   在 URL 中使用正则表达式.
 
-The secondary specifiers are optional in the :file:`cache.config` file. The
-following list shows possible secondary specifiers with allowed values.
+辅助说明符在 :file:`cache.config` 文件中是可选的. 以下列表显示了可能具有允许值的辅助说明符.
 
 .. _cache-config-format-port:
 
@@ -109,11 +102,9 @@ following list shows possible secondary specifiers with allowed values.
 .. _cache-config-format-internal:
 
 ``internal``
-    A boolean value, ``true`` or ``false``, specifying if the rule should
-    match (or not match) a transaction originating from an internal API. This
-    is useful to differentiate transaction originating from an ATS plugin.
+    布尔值, ``true`` 或 ``false``, 指定是否规则应该匹配 ( 或不匹配) 来自internal API的事务. 这有助于区分来自 ATS 插件的事务.
 
-The following list shows possible actions and their allowed values.
+以下列表显示了可能的动作及其允许的值.
 
 
 .. _cache-config-format-action:
@@ -130,11 +121,7 @@ The following list shows possible actions and their allowed values.
 .. _cache-responses-to-cookies:
 
 ``cache-responses-to-cookies``
-   Change the style of caching with regard to cookies. This effectively
-   overrides the configuration parameter
-   :ts:cv:`proxy.config.http.cache.cache_responses_to_cookies`
-   and uses the same values with the same semantics. The override happens
-   only for requests that match.
+   更改有关 cookie 的缓存样式. 这有效的重写了 :ts:cv:`proxy.config.http.cache.cache_responses_to_cookies` 的配置参数, 并且使用相同语义的相同值. 该重写只对匹配的请求生效.
     
 
 .. _cache-config-format-pin-in-cache:
@@ -157,16 +144,12 @@ The following list shows possible actions and their allowed values.
 .. _cache-config-format-revalidate:
 
 ``revalidate``
-   For objects that are in cache, overrides the the amount of time the object(s) 
-   are to be considered fresh. 使用与 ``pin-in-cache`` 相同的时间格式.
+   对于缓存中的对象, 重写对象的时间数量会视为新鲜. 使用与 ``pin-in-cache`` 相同的时间格式.
 
 .. _cache-config-format-ttl-in-cache:
 
 ``ttl-in-cache``
-   Forces object(s) to become cached, as if they had a Cache-Control: max-age:<time>
-   header. Can be overruled by requests with cookies. The value is the amount of 
-   time object(s) are to be kept in the cache, regardless of Cache-Control response 
-   headers. Use the same time formats as pin-in-cache and revalidate.
+   强制对象成为缓存, 就好像它们有一个 Cache-Control: max-age:<time> 标头. 可以通过带有cookies的请求来否决. 该值是在缓存中保留时间对象的数量， 与 Cache-Control 请求标头无关. 使用与 ``pin-in-cache`` 相同的时间格式.
 
 例子
 ========
