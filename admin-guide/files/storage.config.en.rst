@@ -21,25 +21,18 @@ storage.config
 
 .. configfile:: storage.config
 
-The :file:`storage.config` file (by default, located in
-``/usr/local/etc/trafficserver/``) lists all the files, directories, and/or
-hard disk partitions that make up the Traffic Server cache. After you
-modify the :file:`storage.config` file the new settings will not be effective until Traffic Server is restarted.
+:file:`storage.config` 文件 ( 默认位于 ``/usr/local/etc/trafficserver/`` ) , 列出组成 Traffic Server 缓存的所有文件, 目录和/或硬盘分区. 修改 :file:`storage.config` 文件后, 新的配置不会立即生效, 需要重新启动 Traffic Server .
 
-Format
+格式
 ======
 
-The format of the :file:`storage.config` file is a series of lines of the form
+ :file:`storage.config` 文件格式是: 
 
    *pathname* *size* [ ``volume=``\ *number* ] [ ``id=``\ *string* ]
 
-where :arg:`pathname` is the name of a partition, directory or file, :arg:`size` is the size of the
-named partition, directory or file (in bytes), and :arg:`volume` is the volume number used in the
-files :file:`volume.config` and :file:`hosting.config`. :arg:`id` is used for seeding the
-:ref:`assignment-table`. You must specify a size for directories; size is optional for files and raw
-partitions. :arg:`volume` and arg:`seed` are optional.
+其中 :arg:`pathname` 是一个分区的名称, 目录或文件; :arg:`size` 是命名的分区, 目录或文件(bytes)的大小; :arg:`volume` 是用在 :file:`volume.config` 和 :file:`hosting.config` 里的卷号; :arg:`id` 用于:ref:`assignment-table`. 必须指定目录的大小; 在文件和 raw 分区里, 大小是可选的. :arg:`volume` 和 arg:`seed` 是可选的.
 
-.. note::
+.. 注意::
 
    The :arg:`volume` option is independent of the :arg:`seed` option and either can be used with or without the other,
    and their ordering on the line is irrelevant.
@@ -48,13 +41,12 @@ partitions. :arg:`volume` and arg:`seed` are optional.
 
    If the :arg:`id` option is used every use must have a unique value for :arg:`string`.
 
-You can use any partition of any size. For best performance:
+可以使用任何大小的任何分区.  For best performance:
 
--  Use raw disk partitions.
--  For each disk, make all partitions the same size.
--  For each node, use the same number of partitions on all disks.
--  Group similar kinds of storage into different volumes. For example
-   split out SSD's or RAM drives into their own volume.
+-  使用 raw 磁盘分区.
+-  对于每个磁盘, 所有分区大小相同.
+-  对于每个节点, 在所有磁盘上使用相同数量的分区.
+-  将相似的存储分组到不同的卷中. 例如, 将 SSD 或 RAM 驱动器拆分成自己的卷.
 
 Specify pathnames according to your operating system requirements. See
 the following examples. In the :file:`storage.config` file, a formatted or
@@ -94,21 +86,18 @@ reboot causes the path names to change.
 The :arg:`id` option can be used to create a fixed string that an administrator can use to keep the
 assignment table consistent by maintaing the mapping from physical device to base string even in the presence of hardware changes and failures.
 
-Examples
+例子
 ========
 
-The following basic example shows 128 MB of cache storage in the
-``/big_dir`` directory::
+下面的示例显示在 ``/big_dir`` 目录中128MB缓存存储::
 
    /big_dir 134217728
 
-You can use the ``.`` symbol for the current directory. Here is an
-example for 64 MB of cache storage in the current directory::
+可以使用 ``.`` 表示当前目录. 以下是在当前目录有 64MB 缓存存储::
 
    . 134217728
 
-As an alternative, using the human readable prefixes, you can express a 64GB
-cache file with::
+另一种方式是使用可读后缀, 可以使用以下命令来表达 64GB 缓存文件::
 
    /really_big_dir 64G
 
@@ -128,7 +117,7 @@ The following example is for the Solaris operating system::
 
 .. note:: Size is optional. If not specified, the entire partition is used.
 
-Linux Example
+Linux 例子
 -------------
 .. note::
     Rather than refer to disk devices like ``/dev/sda``, ``/dev/sdb``, etc.,

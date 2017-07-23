@@ -21,11 +21,7 @@ volume.config
 
 .. configfile:: volume.config
 
-The :file:`volume.config` file enables you to manage your cache space more
-efficiently and restrict disk usage by creating cache volumes of
-different sizes for specific protocols. You can further configure these
-volumes to store data from certain origin servers and/or domains in the
-:file:`hosting.config` file.
+使用 :file:`volume.config` 文件能够更有效地管理缓存空间, 并通过为特定协议创建不同大小的缓存卷来限制磁盘使用率. 您可以进一步配置这些卷以存储 :file:`hosting.config` 文件中某些原始服务器和/或域的数据.
 
 .. important::
 
@@ -34,17 +30,15 @@ volumes to store data from certain origin servers and/or domains in the
     volume size and protocol assignment. For step-by-step instructions about
     partitioning the cache, refer to :ref:`partitioning-the-cache`.
 
-Format
+格式
 ======
 
-For each volume you want to create, enter a line with the following
-format: ::
+对于每个要创建的卷, 请输出以下格式的行: ::
 
     volume=volume_number  scheme=protocol_type  size=volume_size
 
-where ``volume_number`` is a number between 1 and 255 (the maximum
-number of volumes is 255) and ``protocol_type`` is ``http``. Traffic
-Server supports ``http`` for HTTP volume types; ``volume_size`` is the
+其中 ``volume_number`` 是一个 1 到 255 之间的数字 (最大卷数是255) , ``protocol_type`` 是 ``http``. Traffic
+Server 对于 HTTP 卷类型支持 ``http`` ; ``volume_size`` is the
 amount of cache space allocated to the volume. This value can be either
 a percentage of the total cache space or an absolute value. The absolute
 value must be a multiple of 128 MB, where 128 MB is the smallest value.
@@ -58,11 +52,10 @@ do not allocate all the disk space in the cache, then the extra disk
 space is not used. You can use the extra space later to create new
 volumes without deleting and clearing the existing volumes.
 
-Examples
+例子
 ========
 
-The following example partitions the cache evenly between HTTP and HTTPS
-requests::
+以下例子在 HTTP 和 HTTPS 请求之间均匀分配缓存大小::
 
     volume=1 scheme=http size=50%
     volume=2 scheme=https size=50%

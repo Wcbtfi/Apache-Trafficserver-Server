@@ -48,12 +48,10 @@ After you modify the :file:`remap.config` run the
 changes to one node in a cluster, Traffic Server automatically applies
 the changes to all other nodes in the cluster.
 
-Format
+格式
 ======
 
-Each line in the :file:`remap.config` file must contain a mapping rule. Empty lines,
-or lines starting with ``#`` are ignored. Each line can be broken up into multiple
-lines for better readability by using ``\`` as continuation marker.
+:file:`remap.config` 文件里的每一行必须包含一个缓存规则. 空行或以  开头的行会被忽略. 每行可以分成多行以提高可读性, 方法是使用 ``\`` 继续标记.
 
 Traffic Server recognizes three space-delimited fields: ``type``,
 ``target``, and ``replacement``. The following list describes the format of each field.
@@ -61,10 +59,9 @@ Traffic Server recognizes three space-delimited fields: ``type``,
 .. _remap-config-format-type:
 
 ``type``
-    Enter one of the following:
+    请输入以下内容之一:
 
-    -  ``map`` --translates an incoming request URL to the appropriate
-       origin server URL.
+    -  ``map`` -- 将传入的 URL 请求转换成相应的源服务器 URL .
 
     -  ``map_with_recv_port`` --exactly like 'map' except that it uses the port at
        which the request was received to perform the mapping instead of the port present
@@ -76,10 +73,9 @@ Traffic Server recognizes three space-delimited fields: ``type``,
        "deep linking protection", where target URLs are only accessible when the Referer
        header is set to a URL that is allowed to link to the target.
 
-    -  ``reverse_map`` --translates the URL in origin server redirect
-       responses to point to the Traffic Server.
+    -  ``reverse_map`` -- translates the URL in origin server redirect responses to point to the Traffic Server.
 
-    -  ``redirect`` --redirects HTTP requests permanently without having
+    -  ``redirect`` -- redirects HTTP requests permanently without having
        to contact the origin server. Permanent redirects notify the
        browser of the URL change (by returning an HTTP status code 301)
        so that the browser can update bookmarks.
@@ -89,7 +85,7 @@ Traffic Server recognizes three space-delimited fields: ``type``,
        notify the browser of the URL change for the current request only
        (by returning an HTTP status code 307).
 
-       .. note: use the ``regex_`` prefix to indicate that the line has a regular expression (regex).
+       .. 注意: 使用 ``regex_`` 前缀表示该行具有正则表达式 (regex).
 
 .. _remap-config-format-target:
 
@@ -112,37 +108,32 @@ Traffic Server recognizes three space-delimited fields: ``type``,
 
 .. _remap-config-precedence:
 
-Precedence
+优先级
 ==========
 
-Remap rules are not processed top-down, but based on an internal
-priority. Once these rules are executed we pick the first match
-based on configuration file parse order.
+Remap 规则不是自上而下处理的, 而是基于内部优先级. 执行这些规则后, 将根据配置文件解析顺序选取第一个匹配项.
 
-1. ``map_with_recv_port`` and ```regex_map_with_recv_port```
-#. ``map`` and ``regex_map`` and ``reverse_map``
-#. ``redirect`` and ``redirect_temporary``
-#. ``regex_redirect`` and ``regex_redirect_temporary``
+1. ``map_with_recv_port`` 和 ```regex_map_with_recv_port```
+#. ``map`` 和 ``regex_map`` 和 ``reverse_map``
+#. ``redirect`` 和 ``redirect_temporary``
+#. ``regex_redirect`` 和 ``regex_redirect_temporary``
 
 
-Match-All
+匹配-全部
 =========
 
-A map rule with a single ``/`` acts as a wildcard, it will match any
-request. This should be use with care, and certainly only once at the
-end of the remap.config file. E.g.
+用单个 ``/`` 作为通配符的映射规则, 它将匹配任何请求. 使用时需谨慎, 当然, 在 remap.config 文件的结尾只需要一次. 例子.
 
 ::
 
     map / http://all.example.com
 
-Examples
+例子
 --------
 
-The following section shows example mapping rules in the
-:file:`remap.config` file.
+下一节介绍在:file:`remap.config` 文件里的映射规则示例.
 
-Reverse Proxy Mapping Rules
+反向代理映射规则
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example shows a map rule that does not specify a path
@@ -151,16 +142,16 @@ prefix in the target or replacement: ::
     map http://www.x.com/ http://server.hoster.com/
     reverse_map http://server.hoster.com/ http://www.x.com/
 
-This rule results in the following translations:
+此规则将导致以下转换:
 
 ================================================ ========================================================
-Client Request                                   Translated Request
+客户端请求                                   转换后请求
 ================================================ ========================================================
 ``http://www.x.com/Widgets/index.html``          ``http://server.hoster.com/Widgets/index.html``
 ``http://www.x.com/cgi/form/submit.sh?arg=true`` ``http://server.hoster.com/cgi/form/submit.sh?arg=true``
 ================================================ ========================================================
 
-The following example shows a map rule with path prefixes specified in
+下面的例子显示了在目标中指定的路径前缀的映射规则 The following example shows a map rule with path prefixes specified in
 the target: ::
 
     map http://www.y.com/marketing/ http://marketing.y.com/
@@ -172,10 +163,10 @@ the target: ::
     map http://www.y.com/stuff/ http://info.y.com/
     reverse_map http://info.y.com/ http://www.y.com/stuff/
 
-These rules result in the following translations:
+此规则将导致以下转换:
 
 =============================================================== ==========================================================
-Client Request                                                  Translated Request
+客户端请求                                                  转换后请求
 =============================================================== ==========================================================
 ``http://www.y.com/marketing/projects/manhattan/specs.html``    ``http://marketing.y.com/projects/manhattan/specs.html``
 ``http://www.y.com/stuff/marketing/projects/boston/specs.html`` ``http://info.y.com/marketing/projects/boston/specs.html``

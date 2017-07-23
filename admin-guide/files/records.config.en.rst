@@ -32,10 +32,10 @@ run the command :option:`traffic_ctl config reload` to apply the changes.
 When you apply changes to one node in a cluster, Traffic Server
 automatically applies the changes to all other nodes in the cluster.
 
-Format
+格式
 ======
 
-Each variable has the following format::
+每个变量都有以下格式::
 
    SCOPE variable_name DATATYPE variable_value
 
@@ -67,41 +67,34 @@ for all ``INT`` type configurations
    - ``G`` Gigabytes (1024^3 or 1,073,741,824 bytes)
    - ``T`` Terabytes (1024^4 or 1,099,511,627,776 bytes)
 
-.. note::
+.. 重要::
 
-    Traffic Server currently writes back configurations to disk periodically,
-    and when doing so, will not preserve the prefixes.
+    Traffic Server 当前定期将配置回写到磁盘, 这样做时, 不会保留前缀.
 
-Examples
+例子
 ========
 
-In the following example, the variable `proxy.config.proxy_name`_ is
-a ``STRING`` datatype with the value ``my_server``. This means that the
-name of the Traffic Server proxy is ``my_server``. ::
+在下面的例子中, 变量 `proxy.config.proxy_name`_ 是一个值为 ``my_server`` 的 ``STRING`` 数据类型. 它的意思是 Traffic Server 的名称是 ``my_server``. ::
 
    CONFIG proxy.config.proxy_name STRING my_server
 
-If the server name should be ``that_server`` the line would be ::
+如果服务器的名称是 ``that_server`` , 这行应该是 ::
 
    CONFIG proxy.config.proxy_name STRING that_server
 
-In the following example, the variable ``proxy.config.arm.enabled`` is
-a yes/no flag. A value of ``0`` (zero) disables the option; a value of
-``1`` enables the option. ::
+在下面的例子中, 变量 ``proxy.config.arm.enabled`` 是 yes/no 标记. 值为 ``0`` (zero) 禁用这个选项; 值为 ``1`` 启用这个选项. ::
 
    CONFIG proxy.config.arm.enabled INT 0
 
-In the following example, the variable sets the cluster startup timeout
-to 10 seconds. ::
+在下面的例子中, 变量将集群启动超时设置成10秒. ::
 
    CONFIG proxy.config.cluster.startup_timeout INT 10
 
-The last examples configures a 64GB RAM cache, using a human readable
-prefix. ::
+最后例子配置了 64GB RAM缓存, 使用人类可以读取的前缀 ::
 
    CONFIG proxy.config.cache.ram_cache.size INT 64G
 
-Environment Overrides
+环境覆盖
 =====================
 
 Every :file:`records.config` configuration variable can be overridden
@@ -123,47 +116,46 @@ like this::
 
 .. _configuration-variables:
 
-Configuration Variables
+配置变量
 =======================
 
-The following list describes the configuration variables available in
-the :file:`records.config` file.
+以下列表描述了在 :file:`records.config` 文件里可以配置的变量.
 
-System Variables
+系统变量
 ----------------
 
 .. ts:cv:: CONFIG proxy.config.product_company STRING Apache Software Foundation
 
-   The name of the organization developing Traffic Server.
+   Traffic Server 的组织名称 The name of the organization developing .
 
 .. ts:cv:: CONFIG proxy.config.product_vendor STRING Apache
 
-   The name of the vendor providing Traffic Server.
+   提供Traffic Server 的供应商名称.
 
 .. ts:cv:: CONFIG proxy.config.product_name STRING Traffic Server
 
-   The name of the product.
+   产品名称.
 
 .. ts:cv:: CONFIG proxy.config.proxy_name STRING build_machine
    :reloadable:
 
-   The name of the Traffic Server node.
+   Traffic Server 节点名称.
 
 .. ts:cv:: CONFIG proxy.config.bin_path STRING bin
 
-   The location of the Traffic Server ``bin`` directory.
+   the Traffic Server ``bin`` 目录的位置.
 
 .. ts:cv:: CONFIG proxy.config.proxy_binary STRING traffic_server
 
-   The name of the executable that runs the :program:`traffic_server` process.
+   运行 :program:`traffic_server` 进程的可执行文件的名称.
 
 .. ts:cv:: CONFIG proxy.config.proxy_binary_opts STRING -M
 
-   The command-line options for starting Traffic Server.
+   用于启动  Traffic Server 的命令行选项.
 
 .. ts:cv:: CONFIG proxy.config.manager_binary STRING traffic_manager
 
-   The name of the executable that runs the :program:`traffic_manager` process.
+   运行 :program:`traffic_manager` 进程的可执行文件的名称.
 
 .. ts:cv:: CONFIG proxy.config.env_prep STRING
 
@@ -269,16 +261,16 @@ A value of ``0`` means no signal will be sent.
 
 .. ts:cv:: CONFIG proxy.config.exec_thread.affinity INT 1
 
-   Bind threads to specific processing units.
+   将线程绑定到特定的处理单元.
 
 ===== ====================
-Value Effect
+值 影响
 ===== ====================
-0     assign threads to machine
-1     assign threads to NUMA nodes [default]
-2     assign threads to sockets
-3     assign threads to cores
-4     assign threads to processing units
+0     将线程分配给机器
+1     将线程分配给NUMA节点 [默认]
+2     将线程分配给套接字
+3     将线程分配给内核
+4     将线程分配给处理单元
 ===== ====================
 
 .. note::
